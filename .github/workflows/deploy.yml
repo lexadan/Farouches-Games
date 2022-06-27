@@ -24,7 +24,7 @@ jobs:
       with:
         host: farouchehub.fr
         username: corentin
-        key: ${{ secrets.SSHKEY }}
+        key: skyrim25
         port: 50000
         source: "deploy.tar"
         target: "destination/folder"
