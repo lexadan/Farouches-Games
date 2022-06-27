@@ -22,9 +22,9 @@ jobs:
     - name: copy file via ssh password
       uses: appleboy/scp-action@master
       with:
-        host: farouchehub.fr
-        username: corentin
-        password: skyrim25
-        port: 50000
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+        port: ${{ secrets.PORT }}
         source: "deploy.tar"
-        target: "destination/folder"
+        target: "/home/corentin/"
