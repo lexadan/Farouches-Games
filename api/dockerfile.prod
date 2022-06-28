@@ -12,4 +12,6 @@ RUN npm ci
 COPY . .
 
 RUN tsc
+
+COPY . .
 CMD ["node", "./dist/src/server.js"]
