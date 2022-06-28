@@ -6,8 +6,8 @@
 
 ```shell
 git clone git@github.com:lexadan/Farouches-Games.git
-# init local env file for private tokens
-make init-env
+# init project
+make init
 ```
 
 For developpement

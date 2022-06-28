@@ -2,8 +2,9 @@ ifndef APP_ENV
 	include .env
 endif
 
-init-env:
+init:
 	echo '# Never push this file\n' >> .env.local
+	npm install ./api
 build-dev:
 	@$(CONSOLE) docker-compose up --build
 .PHONY: build-dev
