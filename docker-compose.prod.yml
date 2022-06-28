@@ -5,7 +5,7 @@ services:
       context: ./api
       dockerfile: dockerfile.prod
     volumes:
-      - ./api:/usr/src/app
+      - ./api:/usr/app
     ports:
       - "3000:3000"
     environment:
