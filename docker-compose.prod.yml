@@ -14,3 +14,4 @@ services:
       DEBUG: nodejs-docker-express:*
     env_file:
       - ./.env
+      - ./.env.local
