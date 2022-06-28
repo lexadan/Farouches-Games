@@ -10,5 +10,5 @@ build-dev:
 .PHONY: build-dev
 
 build-prod:
-	@$(CONSOLE) docker-compose -f docker-compose.prod.yml up --build
+	@$(CONSOLE) docker-compose -f docker-compose.prod.yml up --build -d
 .PHONY: build-prod

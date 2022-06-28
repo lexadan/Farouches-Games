@@ -4,8 +4,6 @@ services:
     build:
       context: ./api
       dockerfile: dockerfile.prod
-    volumes:
-      - ./api:/usr/app
     ports:
       - "3000:3000"
     environment:
