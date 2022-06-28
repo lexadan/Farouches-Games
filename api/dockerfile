@@ -8,5 +8,6 @@ EXPOSE 3000
 ENV NODE_ENV=development
 RUN npm install -g nodemon
 RUN npm install
-COPY . /
+COPY . .
+RUN ls node_modules/@types
 CMD ["npm", "run", "start:dev"]

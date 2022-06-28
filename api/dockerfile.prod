@@ -6,8 +6,10 @@ COPY tsconfig.json ./
 
 EXPOSE 3000
 ENV NODE_ENV=production
-RUN npm install\
-        && npm install typescript -g
+RUN npm install typescript -g
+RUN npm ci
+
 COPY . .
+
 RUN tsc
 CMD ["node", "./dist/src/server.js"]
