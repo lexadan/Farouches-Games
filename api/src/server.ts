@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import { Request, Response } from 'express';
 import socketIo from 'socket.io';
+import log from 'log';
 
 dotenv.config();
 
@@ -13,4 +14,5 @@ app.get('/', (req: Request, res: Response) => {
 
 app.listen(3000, () => {
     console.log('Application started on port 3000!');
+    log.info("some info message %s", "injected string");
 });

@@ -4,7 +4,7 @@ endif
 
 init:
 	echo '# Never push this file\n' >> .env.local
-	npm install ./api
+	cd ./api && npm install && cd ..
 build-dev:
 	@$(CONSOLE) docker-compose up --build
 .PHONY: build-dev
