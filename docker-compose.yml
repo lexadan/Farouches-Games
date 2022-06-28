@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  api:
+    build:
+      context: ./api
+      dockerfile: dockerfile
+      target: dev
+    volumes:
+      - ./api:/usr/src/app
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: development
+      DEBUG: nodejs-docker-express:*
+    env_file:
+      - ./.env
