@@ -1,26 +1,10 @@
 import express, { Application, Request, Response, NextFunction } from "express"
 import bodyParser from "body-parser"
-import { Pool } from "pg";
-const pool = new Pool({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    database: process.env.DB_NAME,
-    password: process.env.DB_PASSWORD,
-    port: parseInt(process.env.DB_PORT || "5432")
-});
+import { PrismaClient } from "@prisma/client";
+import baseRouteur from './routes/base';
+import userRouteur from './routes/user';
 
-
-const connectToDB = async () => {
-    try {
-        await pool.connect();
-        console.log('cconnecté');
-    } catch (err) {
-        console.log(err);
-    }
-    };
-
-connectToDB();
-
+const prisma = new PrismaClient();
 const app: Application = express()
 
 app.use(bodyParser.json())
@@ -29,6 +13,10 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.get("/", (req: Request, res: Response) => {
     res.send("TS App is Running, enfin ffs")
 })
+
+app.use('/v1', baseRouteur);
+app.use('/v1/users', userRouteur);
+
 const PORT = 3000
 
 app.listen(PORT, () => {
