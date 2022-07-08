@@ -1,4 +1,4 @@
-import discordClient from "../../discord";
+import discordClient from "../../discord/discord";
 import { v4 as uuidv4} from 'uuid';
 import { Socket } from "socket.io";
 

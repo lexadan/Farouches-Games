@@ -1,7 +1,8 @@
 import http from 'http';
 import { Server, Socket } from 'socket.io';
-import joinGame from './routes/joinGame';
-import newGame from './routes/newGame';
+import { setLobbyListener } from '../routes/lobby';
+import joinGame from '../controllers/lobby/joinGame';
+import newGame from '../controllers/lobby/newGame';
 
 class WsServer {
     private io: Server | undefined = undefined;
@@ -18,11 +19,14 @@ class WsServer {
         this.io?.to(to).emit(ev, msg);
     }
 
+    on(ev: string, callback: (msg: any) => void) {
+        
+    }
+
     private onConnection(socket: Socket) {
         console.log('New ws connection');
 
-        socket.on('new game', () => {newGame(socket)});
-        socket.on('join game', (msg) => {joinGame(socket, msg)})
+        setLobbyListener(socket);
     }
 }
 

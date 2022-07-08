@@ -1,7 +1,7 @@
 import fetch  from 'node-fetch';
 import { PrismaClient } from "@prisma/client";
 import express, { Application, Request, Response, NextFunction } from "express"
-import discordClient from '../discord';
+import discordClient from '../discord/discord';
 
 const prisma = new PrismaClient();
 

@@ -1,8 +1,8 @@
-import discordClient from "../../discord";
+import discordClient from "../../discord/discord";
 import { v4 as uuidv4} from 'uuid';
 import { Socket } from "socket.io";
-import WS from "..";
-import redisCLient from "../../redis";
+import WS from "../../websockets/websockets";
+import redisCLient from "../../redis/redis";
 
 export default function joinGame(socket: Socket, msg: any) {
     try {
