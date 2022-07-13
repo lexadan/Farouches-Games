@@ -43,5 +43,14 @@ services:
       - 8081:8081
     depends_on:
       - redis-server
+  react-ui:
+    build:
+      context: ./client
+    ports:
+      - "2000:2000"
+    container_name: react-ui
+    stdin_open: true
+    volumes:
+      - ./client:/usr/src/app/client
 volumes:
   redis-data:

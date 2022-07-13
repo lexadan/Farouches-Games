@@ -1,3 +1,4 @@
+import { triggerAsyncId } from 'async_hooks';
 import { Client, Intents, AnyChannel, TextChannel, MessageActionRow, MessageButton } from 'discord.js';
 
 class DiscordClient {
@@ -7,19 +8,25 @@ class DiscordClient {
         this.client.login(process.env.DISCORD_TOKEN);
     }
 
-    createNewGame(roomId: string) {
-        try {
-            const row = new MessageActionRow()
-			.addComponents(
-				new MessageButton()
-					.setCustomId('primary')
-					.setLabel('Rejoindre')
-					.setStyle('PRIMARY'),
-			);
+    
+    async createNewGame(roomId: string) {
+        const filter = () => {
+            return true;
+        }
 
+        try {
             let channel: AnyChannel | undefined = this.client.channels.cache.find(channel => channel.id === '991714490339037314');
-            (channel! as TextChannel).send({content: `New game here omg token : ${roomId}`, components: [row]});
+            const message = await (channel! as TextChannel).send({content: `New game here omg token : ${roomId}`});
             
+            await message.react('✅');
+            const collector = message.createReactionCollector({filter, time: 100000, max: 15});
+
+            collector.on('collect', (reaction, user) => {
+                if (this.client.user?.id === user.id) return;
+                if (reaction.emoji.name === '✅') {
+                    user.send(`http://localhost:2000/games/fculture?discordId=${user.id}&lobbyId=${roomId}`);
+                }
+            })
             return;
         } catch (e) {
             return;

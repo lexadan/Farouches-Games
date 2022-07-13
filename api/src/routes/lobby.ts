@@ -6,7 +6,7 @@ import express from 'express';
 // WS
 
 export function setLobbyListener(socket: Socket) {
-    socket.on('new game', () => {newGame(socket)});
+    socket.on('new game', (msg) => {newGame(socket, msg)});
     socket.on('join game', (msg) => {joinGame(socket, msg)})
 }
 

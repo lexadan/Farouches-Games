@@ -16,11 +16,12 @@ class WsServer {
     }
 
     sendTo(ev: string, msg: any, to: string) {
+        console.log(msg, 'sent to', ev, 'for', to);
         this.io?.to(to).emit(ev, msg);
     }
 
     on(ev: string, callback: (msg: any) => void) {
-        
+        this.io?.on(ev, callback);
     }
 
     private onConnection(socket: Socket) {
